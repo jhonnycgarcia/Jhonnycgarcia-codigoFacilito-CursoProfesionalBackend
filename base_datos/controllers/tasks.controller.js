@@ -12,7 +12,7 @@ module.exports = {
     },
     index: function(req, res) {
         Task.findAll().then((tasks) => {
-            res.json(tasks);
+            res.render('tasks/index', { tasks });
         }).catch(err => {
             console.log(err);
             res.json(err);
