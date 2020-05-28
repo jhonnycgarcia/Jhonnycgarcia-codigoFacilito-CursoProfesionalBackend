@@ -9,4 +9,6 @@ router.route('/tasks')
     })
     .post(TasksController.create);
 
+router.get('/tasks/new', TasksController.new);
+
 module.exports = router;
