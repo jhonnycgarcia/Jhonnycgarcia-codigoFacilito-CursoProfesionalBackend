@@ -1,22 +1,17 @@
 const express = require('express');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
-const Sequelize = require('sequelize');
-
-// Controllers
-const tasksController = require('./controllers/tasks.controller');
 
 const app = express();
+
+// Routes Loaders
+const tasksRoutes = require('./routes/tasks.routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 
-
-app.get('/tasks', tasksController.home);
-
-app.post('/pendientes', function(req, res) {
-    res.send('Insercion finalizada');
-});
+// Routes definitions
+app.use(tasksRoutes);
 
 app.listen(3000);
 

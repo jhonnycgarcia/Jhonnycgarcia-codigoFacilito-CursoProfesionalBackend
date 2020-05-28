@@ -60,6 +60,8 @@ Comando revertir todos los seeders: `sequelize db:seed:undo:all`
 + **GET:** Consultar o busqueda recursos
 + **POST:** insercion de recursos.
 + **PUT _&_ PATCH:** mutacion de recursos (actualizacion, sustitucion y edicion).
+    En la teoría, PUT se diferencía de PATCH, en que el primero indica que vamos a sustituir por completo un recurso, mientras que PATCH habla de actualizar algunos elementos del recurso mismo, sin sustituirlo por completo.
+
 + **DELETE:** destruccion o eliminacion de recursos.
 
 Las rutas deben estar bien definidas
