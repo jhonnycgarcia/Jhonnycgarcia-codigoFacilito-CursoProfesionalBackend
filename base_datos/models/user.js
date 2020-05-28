@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         email: {
@@ -6,10 +8,24 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false
         },
-        password_hash: DataTypes.STRING
+        password_hash: DataTypes.STRING,
+        password: DataTypes.VIRTUAL // campo virtual
     }, {});
     User.associate = function(models) {
         // associations can be defined here
     };
+
+    // Antes de crear el registro
+    User.beforeCreate(function(user, options) {
+        return new Promise((resolve, reject) => {
+            if (user.password) { // Si esta definido
+                bcrypt.hash(user.password, 10, function(error, hash) {
+                    user.password_hash = hash; // Almacenar hash
+                    resolve();
+                });
+            }
+
+        });
+    });
     return User;
 };
