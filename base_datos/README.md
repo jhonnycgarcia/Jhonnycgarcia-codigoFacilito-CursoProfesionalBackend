@@ -68,3 +68,10 @@ Comando revertir todos los seeders: `sequelize db:seed:undo:all`
 
 Las rutas deben estar bien definidas
 Ejemplo: `localhost:3000/tasks, con esta ruta se hace referencia al recurso **tasks** y se manipula a traves de los verbos _HTTP_
+
+## CRUD - Categorias
+```
+sequelize model:generate --name Category --attributes title:string,color:string
+
+sequelize db:migrate
+```

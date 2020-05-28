@@ -14,6 +14,7 @@ const authUserMiddleware = require('./middlewares/authUser.middleware');
 const tasksRoutes = require('./routes/tasks.routes');
 const registrationsRoutes = require('./routes/registrations.routes');
 const sessionsRoutes = require('./routes/sessions.routes');
+const catergoriesRoutes = require('./routes/catergories.routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -33,6 +34,7 @@ app.use(authUserMiddleware);
 app.use(tasksRoutes);
 app.use(registrationsRoutes);
 app.use(sessionsRoutes);
+app.use(catergoriesRoutes);
 
 app.get('/', (req, res) => {
     res.render('home', { user: req.user });
