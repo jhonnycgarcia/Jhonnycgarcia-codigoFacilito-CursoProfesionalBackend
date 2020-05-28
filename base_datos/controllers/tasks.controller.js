@@ -16,10 +16,18 @@ module.exports = {
         }).catch(err => {
             console.log(err);
             res.json(err);
-        })
+        });
     },
     new: function(req, res) {
         res.render('tasks/new')
+    },
+    show: function(req, res) {
+        Task.findByPk(req.params.id).then(task => {
+            res.render('tasks/show', { task });
+        }).catch(err => {
+            console.log(err);
+            res.json(err);
+        });
     },
     Anew: function(req, res) {},
 };
