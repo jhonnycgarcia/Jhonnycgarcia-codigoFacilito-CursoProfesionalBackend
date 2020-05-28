@@ -3,14 +3,18 @@ const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 
+// Controllers
+const tasksController = require('./controllers/tasks.controller');
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('view engine', 'pug');
+app.set('view engine', 'pug');
 
+
+app.get('/tasks', tasksController.home);
 
 app.post('/pendientes', function(req, res) {
-    // db.run("INSERT INTO tasks(description) VALUES(?)", req.body.description);
     res.send('Insercion finalizada');
 });
 
