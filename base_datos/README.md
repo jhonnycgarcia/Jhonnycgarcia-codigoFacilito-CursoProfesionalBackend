@@ -37,3 +37,21 @@ Se genera un archivo en la ruta **seeders** en el cual se dictan dos instruccion
 Comando insertar seeders: `sequelize db:seed:all`
 Comando revertir insercion de seeders: `sequelize db:seed:undo`
 Comando revertir todos los seeders: `sequelize db:seed:undo:all`
+
+# REST
+## Limitantes
+1. La arquitectura cliente/servidor.
+    + Separacion de responsabilidades entre ambas partes.
+2. Que sea stateless
+    + En la comunicacion no existe un contexto, entre el cliente y el servidor.
+    + Cada peticion debe ser independiente y nunca dependera de peticiones anteriores.
+4. Cacheability
+    + Pisibilidad de almacenar respuestas en cache para mejorar los tiempos de respuesta.
+5. Que el sistema pueda estar basado en capas.
+    + Cada capa debe tener una responsabilidad unica y bien definida.
+    + Cada capa debe ser independiente.
+    + Solo puede comunicarse a traves de interfaces.
+6. Que posea una interfaz uniforme.
+    + Estandar en la interfaz de comunicacion entre los componentes.
+    + Estandar en la interaccion entre el cliente y servidor.
+7. Pueden enviar codigo on deman. (opcional)
