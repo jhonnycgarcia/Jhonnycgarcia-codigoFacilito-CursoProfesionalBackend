@@ -6,8 +6,9 @@ const expressSession = require('express-session');
 
 const app = express();
 
-// Middlewares
+// Middlewares Loaders
 const findUserMiddleware = require('./middlewares/findUser.middleware');
+const authUserMiddleware = require('./middlewares/authUser.middleware');
 
 // Routes Loaders
 const tasksRoutes = require('./routes/tasks.routes');
@@ -24,7 +25,9 @@ app.use(expressSession({
     resave: false // no guardar constantemente si no esta inicializada
 }));
 
+// Middlewares
 app.use(findUserMiddleware);
+app.use(authUserMiddleware);
 
 // Routes definitions
 app.use(tasksRoutes);
