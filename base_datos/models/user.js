@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         password: DataTypes.VIRTUAL // campo virtual
     }, {});
     User.associate = function(models) {
-        // associations can be defined here
+        // associations can be defined here (hasMany = tiene muchos || belongsTo = le pertenece a)
+        User.hasMany(models.Task);
     };
 
     // Añadir metodo a la clase
