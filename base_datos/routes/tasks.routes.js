@@ -9,6 +9,8 @@ router.route('/tasks')
 
 router.get('/tasks/new', TasksController.new);
 
+router.get('/tasks/:id/edit', TasksController.edit);
+
 // Wildcard: parametros que cambian dentro de la URL
 router.route('/tasks/:id')
     .get(TasksController.show)

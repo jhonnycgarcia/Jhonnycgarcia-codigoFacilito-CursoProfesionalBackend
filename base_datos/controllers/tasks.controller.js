@@ -10,6 +10,14 @@ module.exports = {
                 res.json(err);
             })
     },
+    edit: function(req, res) {
+        Task.findByPk(req.params.id).then(task => {
+            res.render('tasks/edit', { task });
+        }).catch(err => {
+            console.log(err);
+            res.json(err);
+        });
+    },
     index: function(req, res) {
         Task.findAll().then((tasks) => {
             res.render('tasks/index', { tasks });
