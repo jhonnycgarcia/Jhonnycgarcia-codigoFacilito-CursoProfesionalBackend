@@ -6,6 +6,9 @@ module.exports = {
     },
     create: function(req, res) {
         User.login(req.body.email, req.body.password).then(user => {
+            if (user) {
+                req.session.userId = user.id;
+            }
             res.json(user);
         }).catch(error => {
             console.log(error);

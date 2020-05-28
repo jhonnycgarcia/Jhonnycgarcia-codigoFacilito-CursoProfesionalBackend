@@ -2,6 +2,7 @@ const express = require('express');
 const sqlite3 = require('sqlite3');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const expressSession = require('express-session');
 
 const app = express();
 
@@ -13,6 +14,12 @@ const sessionsRoutes = require('./routes/sessions.routes');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.set('view engine', 'pug');
+
+app.use(expressSession({
+    secret: ['1651sdfasdflkm€#67$&345', '65drgkjnshbdsfgvd!·"%&%'],
+    saveUninitialized: false, // no guardar sesion sin valor
+    resave: false // no guardar constantemente si no esta inicializada
+}));
 
 // Routes definitions
 app.use(tasksRoutes);
