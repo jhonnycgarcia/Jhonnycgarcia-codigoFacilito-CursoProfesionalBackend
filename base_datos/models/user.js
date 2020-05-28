@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     User.associate = function(models) {
         // associations can be defined here (hasMany = tiene muchos || belongsTo = le pertenece a)
-        User.hasMany(models.Task);
+        // El segundo parametro sirve para realizar la configuracion a la asociacion
+        User.hasMany(models.Task, { as: 'tasks' });
     };
 
     // Añadir metodo a la clase

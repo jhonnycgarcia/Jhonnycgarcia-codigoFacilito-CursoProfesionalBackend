@@ -5,7 +5,9 @@ module.exports = {
         return queryInterface.addColumn('tasks', 'userId', { // Crear llave foranea
             type: Sequelize.INTEGER,
             references: { // Modelo y campo referenciado
-                model: 'User',
+                model: {
+                    tableName: 'Users'
+                },
                 key: 'id'
             }
         });
