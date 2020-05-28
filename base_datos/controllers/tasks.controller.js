@@ -10,6 +10,14 @@ module.exports = {
                 res.json(err);
             })
     },
+    index: function(req, res) {
+        Task.findAll().then((tasks) => {
+            res.json(tasks);
+        }).catch(err => {
+            console.log(err);
+            res.json(err);
+        })
+    },
     new: function(req, res) {
         res.render('tasks/new')
     },

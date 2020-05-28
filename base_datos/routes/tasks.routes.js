@@ -4,9 +4,7 @@ const TasksController = require('../controllers/tasks.controller');
 let router = express.Router();
 
 router.route('/tasks')
-    .get((req, res) => {
-        res.send('Hola Mundo! - Get')
-    })
+    .get(TasksController.index)
     .post(TasksController.create);
 
 router.get('/tasks/new', TasksController.new);
