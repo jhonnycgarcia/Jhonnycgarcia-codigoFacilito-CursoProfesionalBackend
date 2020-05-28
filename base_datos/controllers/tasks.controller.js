@@ -29,5 +29,13 @@ module.exports = {
             res.json(err);
         });
     },
+    update: function(req, res) {
+        Task.update({ description: req.body.description }, { where: { id: req.params.id } }).then(result => {
+            res.redirect('/tasks/' + req.params.id);
+        }).catch(err => {
+            console.log(err);
+            res.json(err);
+        });
+    },
     Anew: function(req, res) {},
 };

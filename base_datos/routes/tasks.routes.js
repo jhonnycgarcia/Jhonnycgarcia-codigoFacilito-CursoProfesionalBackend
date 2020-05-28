@@ -11,6 +11,7 @@ router.get('/tasks/new', TasksController.new);
 
 // Wildcard: parametros que cambian dentro de la URL
 router.route('/tasks/:id')
-    .get(TasksController.show);
+    .get(TasksController.show)
+    .put(TasksController.update)
 
 module.exports = router;
