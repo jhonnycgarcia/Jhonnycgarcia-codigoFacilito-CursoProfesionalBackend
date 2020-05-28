@@ -41,7 +41,7 @@ module.exports = {
     },
     show: function(req, res) {
         Task.findByPk(req.params.id, {
-            include: [{ model: User, as: 'user' }] // añadir carga de relacion
+            include: [{ model: User, as: 'user' }, 'categories'] // añadir carga de relacion
         }).then(task => {
             res.render('tasks/show', { task });
         }).catch(err => {
@@ -51,11 +51,21 @@ module.exports = {
     },
     update: function(req, res) {
         // Task.addCategories([1,5])
-        Task.update({ description: req.body.description }, { where: { id: req.params.id } }).then(result => {
-            res.redirect('/tasks/' + req.params.id);
-        }).catch(err => {
-            console.log(err);
-            res.json(err);
+        let task = Task.findByPk(req.params.id).then(task => {
+            task.description = req.body.description;
+            task.save().then(() => {
+                let categoryIds = req.body.categories.split(',');
+
+                task.addCategories(categoryIds).then(() => {
+                    res.redirect(`/tasks/${task.id}`);
+                });
+            });
         });
+        // Task.update({ description: req.body.description }, { where: { id: req.params.id } }).then(result => {
+        //     res.redirect('/tasks/' + req.params.id);
+        // }).catch(err => {
+        //     console.log(err);
+        //     res.json(err);
+        // });
     }
 };
