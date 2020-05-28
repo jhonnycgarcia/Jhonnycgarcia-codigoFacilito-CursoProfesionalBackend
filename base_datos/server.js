@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const expressSession = require('express-session');
 
+const socketIo = require('socket.io');
+
 const app = express();
 
 // Middlewares Loaders
@@ -40,7 +42,20 @@ app.get('/', (req, res) => {
     res.render('home', { user: req.user });
 })
 
-app.listen(3000);
+let server = app.listen(3000);
+let io = socketIo(server); // Servidor de websockets
+let usersCount = 0;
+
+io.on('connection', function(socket) {
+    usersCount++;
+
+    io.emit('count_updated', { count: usersCount });
+
+    socket.on('disconnect', function() {
+        usersCount--;
+        io.emit('count_updated', { count: usersCount });
+    });
+});
 
 process.on('SIGINT', function() { // evento de presionar Ctrl + C
     console.log('Server was disconnected!');
