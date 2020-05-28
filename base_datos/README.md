@@ -19,6 +19,7 @@ Para generar un modelo utilizando el CLI es necesario desglosar enviar:
 
 ``` 
 sequelize model:generate --name Task --attributes description:text
+sequelize model:generate --name User --attributes email:string,password_hash:string
 ```
 Luego de esto se generan dos archivos, uno en models y otro en migrations.
 referencia: https://sequelize-mock.readthedocs.io/en/stable/
