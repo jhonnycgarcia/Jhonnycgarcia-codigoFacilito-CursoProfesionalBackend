@@ -1,4 +1,5 @@
 const Task = require('../models').Task;
+const User = require('../models').User;
 
 module.exports = {
     create: function(req, res) {
@@ -29,7 +30,7 @@ module.exports = {
     },
     index: function(req, res) {
         Task.findAll().then((tasks) => {
-            res.render('tasks/index', { tasks });
+            res.render('tasks/index', { tasks: req.user.tasks });
         }).catch(err => {
             console.log(err);
             res.json(err);
@@ -39,7 +40,9 @@ module.exports = {
         res.render('tasks/new')
     },
     show: function(req, res) {
-        Task.findByPk(req.params.id).then(task => {
+        Task.findByPk(req.params.id, {
+            include: [{ model: User, as: 'user' }] // añadir carga de relacion
+        }).then(task => {
             res.render('tasks/show', { task });
         }).catch(err => {
             console.log(err);
