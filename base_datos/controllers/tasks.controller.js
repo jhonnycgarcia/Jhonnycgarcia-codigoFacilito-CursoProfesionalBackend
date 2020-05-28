@@ -50,6 +50,7 @@ module.exports = {
         });
     },
     update: function(req, res) {
+        // Task.addCategories([1,5])
         Task.update({ description: req.body.description }, { where: { id: req.params.id } }).then(result => {
             res.redirect('/tasks/' + req.params.id);
         }).catch(err => {
