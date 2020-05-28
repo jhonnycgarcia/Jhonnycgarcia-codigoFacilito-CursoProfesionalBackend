@@ -27,3 +27,13 @@ referencia: https://sequelize-mock.readthedocs.io/en/stable/
 El comando es `sequelize db:migrate`, ejecutar este comando nos mostrara mensajes en la consola indicandonos el estado de la migracion. Al culminar se modificara la base de datos con las especificaciones realizadas en el modelo de la migracion.
 
 Para revertir las migraciones basta con ejecutar `sequelize db:migrate:undo`
+
+## Generar Seeders
+Comando: `sequelize seed:generate --name generate_tasks`
+
+Se genera un archivo en la ruta **seeders** en el cual se dictan dos instrucciones, _UP_ en el cual se establecen los criterios para cargar los datos y _DOWN_ para eliminar los datos anteriomente cargados.
+
+## Ejecutar los Seeders
+Comando insertar seeders: `sequelize db:seed:all`
+Comando revertir insercion de seeders: `sequelize db:seed:undo`
+Comando revertir todos los seeders: `sequelize db:seed:undo:all`
