@@ -8,6 +8,7 @@ const app = express();
 // Routes Loaders
 const tasksRoutes = require('./routes/tasks.routes');
 const registrationsRoutes = require('./routes/registrations.routes');
+const sessionsRoutes = require('./routes/sessions.routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -16,6 +17,7 @@ app.set('view engine', 'pug');
 // Routes definitions
 app.use(tasksRoutes);
 app.use(registrationsRoutes);
+app.use(sessionsRoutes);
 
 app.listen(3000);
 
