@@ -75,3 +75,9 @@ sequelize model:generate --name Category --attributes title:string,color:string
 
 sequelize db:migrate
 ```
+
+## Tabla asociativa
+```
+sequelize model:generate --name TaskCategories --attributes taskId:integer,categoryId:integer
+sequelize db:migrate
+```
