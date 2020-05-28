@@ -10,6 +10,15 @@ module.exports = {
                 res.json(err);
             })
     },
+    destroy: function(req, res) {
+        Task.destroy({ where: { id: req.params.id } })
+            .then(result => {
+                res.redirect('/tasks');
+            }).catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
     edit: function(req, res) {
         Task.findByPk(req.params.id).then(task => {
             res.render('tasks/edit', { task });
@@ -44,6 +53,5 @@ module.exports = {
             console.log(err);
             res.json(err);
         });
-    },
-    Anew: function(req, res) {},
+    }
 };
