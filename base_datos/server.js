@@ -11,7 +11,7 @@ let db = new sqlite3.Database('proyecto_backend'); // Establecer conexion con la
 // db.run('CREATE TABLE tasks(id int AUTO_INCREMENT, description varchar(255) )'); // Crear la tabla
 
 app.post('/pendientes', function(req, res) {
-    db.run("INSERT INTO tasks(description) VALUES('Hola Mundo!')");
+    db.run("INSERT INTO tasks(description) VALUES(?)", req.body.description);
     res.send('Insercion finalizada');
 });
 
