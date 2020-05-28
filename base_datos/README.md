@@ -55,3 +55,12 @@ Comando revertir todos los seeders: `sequelize db:seed:undo:all`
     + Estandar en la interfaz de comunicacion entre los componentes.
     + Estandar en la interaccion entre el cliente y servidor.
 7. Pueden enviar codigo on deman. (opcional)
+
+## Verbos
++ **GET:** Consultar o busqueda recursos
++ **POST:** insercion de recursos.
++ **PUT _&_ PATCH:** mutacion de recursos (actualizacion, sustitucion y edicion).
++ **DELETE:** destruccion o eliminacion de recursos.
+
+Las rutas deben estar bien definidas
+Ejemplo: `localhost:3000/tasks, con esta ruta se hace referencia al recurso **tasks** y se manipula a traves de los verbos _HTTP_
