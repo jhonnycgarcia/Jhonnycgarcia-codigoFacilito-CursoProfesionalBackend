@@ -6,6 +6,9 @@ const expressSession = require('express-session');
 
 const app = express();
 
+// Middlewares
+const findUserMiddleware = require('./middlewares/findUser.middleware');
+
 // Routes Loaders
 const tasksRoutes = require('./routes/tasks.routes');
 const registrationsRoutes = require('./routes/registrations.routes');
@@ -21,10 +24,16 @@ app.use(expressSession({
     resave: false // no guardar constantemente si no esta inicializada
 }));
 
+app.use(findUserMiddleware);
+
 // Routes definitions
 app.use(tasksRoutes);
 app.use(registrationsRoutes);
 app.use(sessionsRoutes);
+
+app.get('/', (req, res) => {
+    res.render('home', { user: req.user });
+})
 
 app.listen(3000);
 
