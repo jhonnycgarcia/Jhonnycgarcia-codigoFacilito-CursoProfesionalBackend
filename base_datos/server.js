@@ -6,14 +6,8 @@ const Sequelize = require('sequelize');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('view engine', 'pug');
 
-// let db = new sqlite3.Database('proyecto_backend'); // Establecer conexion con la DB
-const sequelize = new Sequelize('proyecto_backend', null, null, {
-    dialect: 'sqlite', // motor de DB
-    storage: './proyecto_backend' // ubicacion del archivo
-});
-
-// db.run('CREATE TABLE tasks(id int AUTO_INCREMENT, description varchar(255) )'); // Crear la tabla
 
 app.post('/pendientes', function(req, res) {
     // db.run("INSERT INTO tasks(description) VALUES(?)", req.body.description);
