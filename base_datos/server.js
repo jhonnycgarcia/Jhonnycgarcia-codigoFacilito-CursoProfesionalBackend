@@ -22,11 +22,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.set('view engine', 'pug');
 
-app.use(expressSession({
+const sessionConfig = {
     secret: ['1651sdfasdflkm€#67$&345', '65drgkjnshbdsfgvd!·"%&%'],
     saveUninitialized: false, // no guardar sesion sin valor
     resave: false // no guardar constantemente si no esta inicializada
-}));
+};
+
+if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') { // si se encuentra en entorno de producion
+    // almacenar en la base de datos
+    sessionConfig['store'] = new(require('connect-pg-simple')(sessionConfig))();
+}
+app.use(expressSession(sessionConfig));
 
 // Middlewares
 app.use(findUserMiddleware);

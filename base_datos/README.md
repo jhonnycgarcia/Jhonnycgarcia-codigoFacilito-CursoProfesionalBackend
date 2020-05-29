@@ -94,3 +94,8 @@ heroku run sequelize db:migrate -env production
 heroku run bash
     npm install sequelize-cli
 ```
+
+## Sesiones a traves de postgres
+```
+sequelize migration:create --name add_pg_session_table
+```
