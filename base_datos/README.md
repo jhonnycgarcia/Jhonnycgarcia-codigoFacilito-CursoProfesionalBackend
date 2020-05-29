@@ -88,4 +88,9 @@ sequelize db:migrate
 + Se genera archivo `Profile` donde se especifica como debe iniciar la aplicacion.
 
 ## Ejecutar comandos de sequelize desde la consola local al repositorio en heroku
-Comando: `heroku run sequelize db:migrate -env production`
+Comando: 
+```
+heroku run sequelize db:migrate -env production
+heroku run bash
+    npm install sequelize-cli
+```

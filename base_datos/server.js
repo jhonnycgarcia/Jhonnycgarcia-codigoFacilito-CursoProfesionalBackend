@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
     res.render('home', { user: req.user });
 })
 
-let server = app.listen(3000);
+let server = app.listen(process.env.PORT || 3000);
 let io = socketIo(server); // Servidor de websockets
 let sockets = {};
 let usersCount = 0; // nro de usuarios conectados
