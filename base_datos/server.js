@@ -57,6 +57,9 @@ io.on('connection', function(socket) {
     });
 });
 
+// Socket Client
+const client = require('./realtime/client');
+
 process.on('SIGINT', function() { // evento de presionar Ctrl + C
     console.log('Server was disconnected!');
     process.exit(); // Elimina el servidor
