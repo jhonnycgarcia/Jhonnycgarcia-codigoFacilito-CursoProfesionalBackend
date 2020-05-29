@@ -1,4 +1,6 @@
 'use strict';
+const serverSocket = require('../realtime/client');
+
 module.exports = (sequelize, DataTypes) => {
     const Task = sequelize.define('Task', {
         description: DataTypes.TEXT
@@ -9,5 +11,12 @@ module.exports = (sequelize, DataTypes) => {
 
         Task.belongsToMany(models.Category, { through: 'TaskCategories', as: 'categories' });
     };
+
+    /* ============= Hooks ============= */
+    // despues de crear un registro
+    Task.afterCreate(function(task, options) {
+        serverSocket.emit('new_task', task);
+    });
+
     return Task;
 };

@@ -51,6 +51,12 @@ io.on('connection', function(socket) {
 
     io.emit('count_updated', { count: usersCount });
 
+    // Recibir evento 'new_task'
+    socket.on('new_task', function(data) {
+        console.log(data);
+        io.emit('new_task', data);
+    });
+
     socket.on('disconnect', function() {
         usersCount--;
         io.emit('count_updated', { count: usersCount });
