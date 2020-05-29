@@ -44,20 +44,34 @@ app.get('/', (req, res) => {
 
 let server = app.listen(3000);
 let io = socketIo(server); // Servidor de websockets
-let usersCount = 0;
+let sockets = {};
+let usersCount = 0; // nro de usuarios conectados
 
 io.on('connection', function(socket) {
     usersCount++;
+
+    let userId = socket.request._query.loggeduser;
+    if (userId) sockets[userId] = socket; // almacenar coneccion
+
 
     io.emit('count_updated', { count: usersCount });
 
     // Recibir evento 'new_task'
     socket.on('new_task', function(data) {
-        console.log(data);
-        io.emit('new_task', data);
+        if (data.userId) { // si se encuentra
+            let userSocket = sockets[data.userId]; // buscar
+            if (!userSocket) return; // No esta conectado en tiempo real
+
+            userSocket.emit('new_task', data);
+        }
     });
 
     socket.on('disconnect', function() {
+        Object.keys(sockets).forEach(userId => { // recorrer arreglo
+            let s = sockets[userId];
+            if (s.id == socket.id) sockets[userId] = null; // reemplazar por null
+        });
+
         usersCount--;
         io.emit('count_updated', { count: usersCount });
     });
