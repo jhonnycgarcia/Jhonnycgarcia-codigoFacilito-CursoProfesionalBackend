@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         Task.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
 
-        Task.belongsToMany(models.Category, { through: 'TaskCategories', as: 'categories' });
+        Task.belongsToMany(models.Category, { through: 'TaskCategories', as: 'categories', foreignKey: 'categoryId' });
     };
 
     /* ============= Hooks ============= */
