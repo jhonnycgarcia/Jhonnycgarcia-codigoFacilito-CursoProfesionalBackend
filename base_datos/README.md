@@ -86,3 +86,6 @@ sequelize db:migrate
 + Es necesario especificar los **_engines_** que requiere el proyecto.
     - Para esto anexamos la version de **node** requerida.
 + Se genera archivo `Profile` donde se especifica como debe iniciar la aplicacion.
+
+## Ejecutar comandos de sequelize desde la consola local al repositorio en heroku
+Comando: `heroku run sequelize db:migrate -env production`
