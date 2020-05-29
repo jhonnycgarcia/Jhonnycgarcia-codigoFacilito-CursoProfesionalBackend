@@ -2,7 +2,7 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.addColumn('tasks', 'userId', { // Crear llave foranea
+        return queryInterface.addColumn('Tasks', 'userId', { // Crear llave foranea
             type: Sequelize.INTEGER,
             references: { // Modelo y campo referenciado
                 model: {
@@ -14,6 +14,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.removeColumn('tasks', 'userId');
+        return queryInterface.removeColumn('Tasks', 'userId');
     }
 };
